@@ -6,3 +6,4 @@ datasets/coco/
 
 # Other
 __pycache__
+.idea/
