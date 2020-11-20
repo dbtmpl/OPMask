@@ -45,3 +45,5 @@ Coming Soon
 Special thanks to the AddamsFamily and the TomTom MAPS-Autonomous Driving Team. Thanks to TomTom for providing exhaustive computational resources.
 
 <img width="80%" src="https://raw.githubusercontent.com/dbtmpl/OPMask/master/.github/images/qualitative_results.png">
+
+https://github.com/dbtmpl/OPMask/blob/main/.github/images/fg_bg_figure.png
