@@ -1,0 +1,1 @@
+from .coco_partially_supervised import PartiallySupervisedEvaluator

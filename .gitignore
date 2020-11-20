@@ -1,0 +1,8 @@
+# Folder containing model outputs
+output/*
+
+# Dataset directory
+datasets/coco/
+
+# Other
+__pycache__

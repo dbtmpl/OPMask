@@ -1,0 +1,34 @@
+VERSION: 2
+_BASE_: "Base-RCNN-FPN.yaml"
+SOLVER:
+  CLIP_GRADIENTS:
+    ENABLED: True
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.02
+  STEPS: (120000,)
+  MAX_ITER: 130000
+MODEL:
+  ROI_BOX_HEAD:
+    NAME: "CAMBoxHeadConv"
+    NUM_CONV: 4
+    NUM_FC: 0
+    CONV_DIM: 1024
+    NORM: "SyncBN"
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  ROI_MASK_HEAD:
+    NUM_CONV: 7
+    CONV_DIM: 256
+    NUM_CONV_UP: 1
+    NORM: "SyncBN"
+    CLS_AGNOSTIC_MASK: True
+    NAME: "CamMaskHead"
+  ROI_HEADS:
+    NAME: "FPNCamRoiHeads"
+EXP:
+  TRAINER: "General"
+  PS: 'voc' # '', 'nvoc', '40_classes_inc'
+  PRINT_PERIOD: 20
+VIS_PERIOD: 10000
+TEST:
+  EVAL_PERIOD: 20000
