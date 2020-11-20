@@ -2,7 +2,7 @@
 [![Python 3.8](https://img.shields.io/badge/Python-3.8-3776AB.svg?logo=python)](https://www.python.org/) [![NumPy 1.18.5](https://img.shields.io/badge/NumPy-1.18.5-blue)](https://numpy.org/doc/1.18/)
  [![Torch 1.7.0](https://img.shields.io/badge/PyTorch-1.7.0-orange)](https://pytorch.org/) [![Detectron2](https://img.shields.io/badge/Detectron2-v0.1-orange)](https://pytorch.org/)
 
-![Image](../blob/main/assets/images/architecture.png?raw=true)
+![Image](blob/main/assets/images/architecture.png?raw=true)
 
 This repository provides the official implementation of the paper:
 > **[Prior to Segment: Foreground Cues for Novel Objects in Partially Supervised Instance Segmentation](#)**<br>
@@ -30,7 +30,7 @@ python start.py --config-file=configs/opmask_R50_FPN_130k.yaml opts MODEL.DEVICE
 With `opts` configs in `configs/` or default Detectron2 configs can be overwritten. 
 For each model a folder `output/OPMask/{dataset}_{exp-id}` is created. With the flag `--exp-id` the folder name can be personalized. The datasets must be configured with the instructions in `datasets/`. 
 
-![Image](../blob/main/assets/images/qualitative_fg_bg.png?raw=true)
+![Image](main/assets/images/qualitative_fg_bg.png?raw=true)
 
 ## Evaluation
 By default each model is evaluated every `TEST.EVAL_PERIOD` iterations and after training. To evaluate a trained model the flag `--eval-only` can be used. Note: the configs (e.g. `exp-id`) need to point to the folder of the trained model.
@@ -43,4 +43,4 @@ Coming Soon
 
 ## Acknowledgements
 Special thanks to the AddamsFamily and the TomTom MAPS-Autonomous Driving Team. Thanks to TomTom for providing exhaustive computational resources.
-![Image](../blob/main/assets/images/qualitative_overlay.png?raw=true)
+![Image](blob/main/assets/images/qualitative_overlay.png?raw=true)
