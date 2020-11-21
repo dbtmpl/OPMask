@@ -7,7 +7,6 @@ This repository provides the official implementation of the paper:
 > *[David Biertimpel](https://scholar.google.com/citations?user=AIu7ihgAAAAJ&hl=en), †[Sindi Shkodrani](https://scholar.google.nl/citations?user=fFVkKNgAAAAJ&hl=en), *[Anil Baslamisli](https://scholar.google.nl/citations?user=mc4l2J4AAAAJ&hl=en) and †[Nóra Baka](https://scholar.google.com/citations?user=ahfzQHEAAAAJ&hl=en) <br>
 > *University of Amsterdam, †TomTom<br>
 > pre-print : coming soon <br>
-> This paper is the product of work during an internship at TomTom.
 
 ![Image](assets/images/architecture.png?raw=true)
 
