@@ -54,7 +54,9 @@ if __name__ == "__main__":
     parser.add_argument('--exp-id', type=str, default="run_01", help="Arbitrary run-id to further distinguish experiments")
     parser.add_argument(
         "opts",
-        help="Modify config options using the command-line",
+        help="Modify config options by adding 'KEY VALUE' pairs at the end of the command. "
+        "See config references at "
+        "https://detectron2.readthedocs.io/modules/config.html#config-references",
         default=None,
         nargs=argparse.REMAINDER,
     )
