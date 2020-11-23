@@ -12,6 +12,13 @@ from ..utils.class_splits import VOC_IDS, VOC_INDICES, NON_VOC_IDS, NON_VOC_INDI
 
 
 class PartiallySupervisedEvaluator(COCOEvaluator):
+    """
+    Copyright (c) Facebook, Inc. and its affiliates.
+    Adapted Detectron2 class.
+
+    Besides calculating box and mask AP, we also calculate AP values for the
+    supervised and unsupervised subset.
+    """
 
     def _eval_predictions(self, tasks, predictions):
         """
@@ -79,6 +86,9 @@ class PartiallySupervisedEvaluator(COCOEvaluator):
 
 def _evaluate_predictions_on_coco_ps(coco_gt, coco_results, iou_type, ps_mode, kpt_oks_sigmas=None):
     """
+    Copyright (c) Facebook, Inc. and its affiliates.
+    Adapted Detectron2 function.
+
     Evaluate the coco results using COCOEval API. Adapted to allow evaluation on different class splits.
     """
     assert len(coco_results) > 0

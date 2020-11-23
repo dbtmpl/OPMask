@@ -16,6 +16,12 @@ from ..layers.batch_norm import get_norm
 
 class MetaCamMaskHead(nn.Module):
     def __init__(self, cfg, input_shape):
+        """
+        Meta class that allows to create different mask heads that use CAMs to steer mask predictions.
+
+        :param cfg: Namespace containing all OPMask configs.
+        :param input_shape: Provides information about the input feature map.
+        """
         super().__init__()
 
         self.input_channels = input_shape.channels
@@ -28,11 +34,25 @@ class MetaCamMaskHead(nn.Module):
         self.num_convs_up = cfg.MODEL.ROI_MASK_HEAD.NUM_CONV_UP
 
     def forward(self, x, cams, proposals):
+        """
+        Trivial forward function that takes FPN features, CAMs and Detectron2 Instances to perform
+        mask prediction during training or inference time.
+        """
         mask_logits = self.layers(x, cams)
         self.predictions_to_tensorboard(mask_logits, cams, proposals)
         return self.loss_or_inference(mask_logits, proposals)
 
+    def layers(self, *inputs):
+        """
+        Everything that involves the actual forward pass of the mask head.
+        """
+        pass
+
     def loss_or_inference(self, mask_logits, proposals):
+        """
+        Gets predictions of the mask head and calculates the loss or performs inference depending
+        on whether it is training or inference time.
+        """
         if self.training:
             mask_losses = {}
             mask_losses.update(
@@ -42,9 +62,6 @@ class MetaCamMaskHead(nn.Module):
         else:
             mask_rcnn_inference(mask_logits, proposals)
             return proposals
-
-    def layers(self, *inputs):
-        pass
 
     def get_down_convs(
             self,
@@ -57,6 +74,10 @@ class MetaCamMaskHead(nn.Module):
             norm='',
             conv_type=Conv2d
     ):
+        """
+        Function to create and register a set of convolutional layers of arbitrary type. The
+        default is the standard Conv2d.
+        """
         layers = []
         for k in range(num_convs_down):
             conv = conv_type(
@@ -75,6 +96,9 @@ class MetaCamMaskHead(nn.Module):
         return layers
 
     def get_conv_up(self, name, num_convs_up, conv_channels):
+        """
+        Function to create and register a set of ConvTranspose2d layers.
+        """
         layers = []
         for k in range(num_convs_up):
             deconv = ConvTranspose2d(
@@ -91,6 +115,10 @@ class MetaCamMaskHead(nn.Module):
 
     @staticmethod
     def get_predictor(input_channels, output_channels=1, init='normal'):
+        """
+        Creates a 1x1 convolution with weights either initialize with a `normal` distribution or
+        with the `kaiming` initialization.
+        """
         _predictor = Conv2d(input_channels, output_channels, kernel_size=1, stride=1, padding=0)
         if init == 'normal':
             nn.init.normal_(_predictor.weight, std=0.001)
@@ -101,6 +129,9 @@ class MetaCamMaskHead(nn.Module):
         return _predictor
 
     def predictions_to_tensorboard(self, mask_logits, cams, proposals):
+        """
+        Sends CAMs and mask predictions to tensorboard while training.
+        """
         if not self.training:
             return None
         storage = get_event_storage()
@@ -118,6 +149,9 @@ class MetaCamMaskHead(nn.Module):
 class CamMaskHead(MetaCamMaskHead):
 
     def __init__(self, cfg, input_shape):
+        """
+        Mask Head of OPMask as discussed in the paper.
+        """
         super().__init__(cfg, input_shape)
 
         self.mask_down = self.get_down_convs(
@@ -137,6 +171,9 @@ class CamMaskHead(MetaCamMaskHead):
         )
 
     def layers(self, x, cam_raw):
+        """
+        Takes FPN features and CAMs to predict instance masks.
+        """
         x = x + cam_raw
 
         for layer in self.mask_down:

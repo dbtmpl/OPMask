@@ -17,6 +17,13 @@ from ..utils.cam_utils import process_cams_batch
 
 @ROI_HEADS_REGISTRY.register()
 class FPNCamRoiHeads(StandardROIHeads):
+    """
+    Copyright (c) Facebook, Inc. and its affiliates.
+    Adapted Detectron2 class.
+
+    Small adjustments to the StandardROIHeads to be able to calculate and process
+    class activation maps (CAMs)
+    """
 
     def __init__(self, cfg, input_shape):
         super().__init__(cfg, input_shape)

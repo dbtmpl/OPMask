@@ -29,6 +29,11 @@ def add_opmask_cfg(cfg):
 
 
 def overall_setup(args):
+    """
+
+    :param args: Arguments from the command line.
+    :return:
+    """
     cfg = get_cfg()  # obtain detectron2's default config
     add_opmask_cfg(cfg)
     cfg.merge_from_file(args.config_file)
@@ -82,6 +87,9 @@ def save_exp_setup(args, cfg):
 
 def default_setup(cfg, args):
     """
+    Copyright (c) Facebook, Inc. and its affiliates.
+    Adapted Detectron2 function.
+
     Perform some basic common setups at the beginning of a job, including:
 
     1. Set up the detectron2 logger

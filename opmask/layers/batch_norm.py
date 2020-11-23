@@ -23,6 +23,7 @@ class AllReduce(Function):
 
 class NaiveSyncBatchNorm(BatchNorm2d):
     """
+    Copyright (c) Facebook, Inc. and its affiliates.
     NaiveSyncBatchNorm Norm from a future Detectron2 version.
 
     In PyTorch<=1.5, ``nn.SyncBatchNorm`` has incorrect gradient
@@ -99,6 +100,9 @@ class NaiveSyncBatchNorm(BatchNorm2d):
 
 
 def get_norm(norm, conv_channels):
+    """
+    Wrapper to use our NaiveSyncBatchNorm function.
+    """
     if norm in ["SyncBN"]:
         return NaiveSyncBatchNorm(conv_channels, stats_mode='N')
     else:

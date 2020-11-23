@@ -9,12 +9,18 @@ from detectron2.evaluation import verify_results
 from opmask.engine import GeneralTrainer
 from opmask.utils.general import overall_setup
 
-EXP_DICT = {
+TRAINER = {
     "General": GeneralTrainer
 }
 
 
 def perform_eval(cfg, trainer):
+    """
+    Uses class methods of the trainer to build, load and evaluate a trained model.
+    :param cfg: Namespace containing all OPMask configs.
+    :param trainer: Trainer used for training the model.
+    :return: Evaluation results.
+    """
     model = trainer.build_model(cfg)
     DetectionCheckpointer(model, save_dir=os.path.join(cfg.OUTPUT_DIR, "models")).resume_or_load(
         cfg.MODEL.WEIGHTS, resume=True
@@ -27,6 +33,9 @@ def perform_eval(cfg, trainer):
 
 
 def train_or_eval(args, cfg, trainer):
+    """
+    Depending on the configs, training or evaluation is performed.
+    """
     if args.eval_only:
         return perform_eval(cfg, trainer)
 
@@ -36,8 +45,11 @@ def train_or_eval(args, cfg, trainer):
 
 
 def main(args):
+    """
+    Performs setup, choses trainer and starts training or evaluation.
+    """
     cfg = overall_setup(args)
-    trainer = EXP_DICT[cfg.EXP.TRAINER]
+    trainer = TRAINER[cfg.EXP.TRAINER]
     return train_or_eval(args, cfg, trainer)
 
 
@@ -51,12 +63,12 @@ if __name__ == "__main__":
     parser.add_argument('--config-file', default="", type=str, help='Path to the config file used')
     parser.add_argument("--eval-only", action="store_true", help="perform evaluation only")
     parser.add_argument("--resume", action="store_true", help="Resume training or start new")
-    parser.add_argument('--exp-id', type=str, default="run_01", help="Arbitrary run-id to further distinguish experiments")
+    parser.add_argument('--exp-id', type=str, default="run_001", help="Run-id to distinguish experiments")
     parser.add_argument(
         "opts",
         help="Modify config options by adding 'KEY VALUE' pairs at the end of the command. "
-        "See config references at "
-        "https://detectron2.readthedocs.io/modules/config.html#config-references",
+             "See config references at "
+             "https://detectron2.readthedocs.io/modules/config.html#config-references",
         default=None,
         nargs=argparse.REMAINDER,
     )

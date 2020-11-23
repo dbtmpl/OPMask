@@ -14,6 +14,9 @@ from ..layers.batch_norm import get_norm
 @ROI_BOX_HEAD_REGISTRY.register()
 class CAMBoxHeadConv(nn.Module):
     """
+    Copyright (c) Facebook, Inc. and its affiliates.
+    Adapted Detectron2 class.
+
     A head with several 3x3 conv layers (each followed by norm & relu) and
     several fc layers (each followed by relu) that allows calculating class activation maps (CAMs).
     """

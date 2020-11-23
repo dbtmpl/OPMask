@@ -32,8 +32,13 @@ class GeneralTrainer(SimpleTrainer):
 
     def __init__(self, cfg):
         """
+        Copyright (c) Facebook, Inc. and its affiliates.
+        Adapted Detectron2 class.
+
+        General trainer executing the training as described in the paper.
+
         Args:
-            cfg (CfgNode):
+            cfg (CfgNode): Namespace containing all OPMask configs.
         """
         logger = logging.getLogger(__name__)
         if not logger.isEnabledFor(logging.INFO):  # setup_logger is not called for d2

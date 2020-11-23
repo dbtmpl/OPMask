@@ -3,7 +3,6 @@ from torch.nn import functional as F
 
 from detectron2.layers import cat
 from detectron2.utils.events import get_event_storage
-from detectron2.layers import get_norm
 
 from ..utils.class_splits import VOC_INDICES, FOURTY_INDICES_INC
 
@@ -11,6 +10,16 @@ PARTIALLY_SUPERVISED = ["voc", "nvoc", "40_classes_inc"]
 
 
 def get_gt_masks(proposals, size, device, train):
+    """
+    Takes ground-truth mask labels saved as PolygonMask and uses bounding boxes
+    predicted by the model to crop and return pixelwise ground-truth labels.
+    :param proposals: Detectron2 instances
+    :param size: Size of the ground-truth masks
+    :param device: Pytorch device
+    :param train: During training we use proposal boxes created by the RPN. During
+                  testing we use the refined boxes predicted by the box head.
+    :return: Pixelwise ground-truth
+    """
     gt_masks = []
     for prop in proposals:
         if train:
@@ -23,6 +32,20 @@ def get_gt_masks(proposals, size, device, train):
 
 
 def mask_loss_ps(pred_mask_logits, instances, vis_period=0, training_mode=''):
+    """
+    Copyright (c) Facebook, Inc. and its affiliates.
+    Adapted Detectron2 function.
+
+    :param pred_mask_logits: Predicted logits by the model
+    :param instances: Detectron2 instances
+    :param vis_period: Determines the iterations where predictions are visualized
+    :param training_mode: Determines the supervised subset of mask labels ('voc', 'nvoc',
+                          '40_classes_inc' or ''). `''` signifies training on all classes.
+                          All instances not of the supervised set of classes are masked.
+                          This way the model does not `see` the respective ground-truth
+                          labels and no information of the novel classes is backpropagated.
+    :return: Pixelwise binary cross entropy loss reduced with mean.
+    """
     mask_side_len = pred_mask_logits.size(2)
     assert pred_mask_logits.size(2) == pred_mask_logits.size(3), "Mask prediction must be square!"
     assert training_mode in PARTIALLY_SUPERVISED + [''], \

@@ -23,12 +23,12 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git@e4
 ```
 
 ## Training
-Training OPMask is simple. In `configs/` we provide different configuration files for reproducing the models in the paper. Training can be executed as follows:
+Training OPMask is simple. In `configs/` we provide different configuration files for reproducing the models in the paper. To test if your installation is correct, you can start a test training on CPU:
 ```Train model
-python start.py --config-file=configs/opmask_R50_FPN_130k.yaml TEST.EVAL_PERIOD 5000
+python start.py --config-file=configs/opmask_R50_FPN_130k.yaml --exp-id=test_run MODEL.DEVICE 'cpu'
 ```
-Configs in `configs/` or default Detectron2 configs can be overwritten by appending `key-value` pairs config to the command (e.g. `TEST.EVAL_PERIOD 5000`).
-For each model a folder `output/OPMask/{dataset}_{exp-id}` is created. With the flag `--exp-id` the folder name can be personalized. The datasets must be configured with the instructions in `datasets/`. 
+Configs in `configs/` or default Detectron2 configs can be overwritten by appending `key-value` pairs config to the command (e.g. `MODEL.DEVICE 'cpu'` or `TEST.EVAL_PERIOD 5000`).
+For each run a folder `output/OPMask/{dataset}_{exp-id}` is created. With the flag `--exp-id` the folder name can be personalized. The datasets must be configured with the instructions in `datasets/`. 
 
 ![Image](assets/images/qualitative_overlay.png?raw=true)
 
