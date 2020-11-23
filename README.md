@@ -30,7 +30,7 @@ python start.py --config-file=configs/opmask_R50_FPN_130k.yaml --exp-id=test_run
 Configs in `configs/` or default Detectron2 configs can be overwritten by appending `key value` config pairs to the command (e.g. `MODEL.DEVICE 'cpu'` or `TEST.EVAL_PERIOD 5000`).
 For each run a folder `output/OPMask/{dataset}_{exp-id}` is created. With the flag `--exp-id` the folder name can be personalized. The datasets must be configured with the instructions in `datasets/`. 
 
-![Image](assets/images/qualitative_overlay.png?raw=true)
+![Image](assets/images/qualitative_overlay_voc.png?raw=true)
 
 ## Evaluation
 By default each model is evaluated every `TEST.EVAL_PERIOD` iterations and after training. To evaluate a trained model the flag `--eval-only` can be used. Note: the configs (e.g. `exp-id`) need to point to the folder of the trained model.
