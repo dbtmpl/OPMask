@@ -38,7 +38,7 @@ By default each model is evaluated every `TEST.EVAL_PERIOD` iterations and after
 ## <a name="Citing OPMask"></a> Citation
 For citing our paper please use the following BibTeX entry:
 ```
-@misc{opmask2020,
+@misc{biertimpel2020prior,
       title={Prior to Segment: Foreground Cues for Novel Objects in Partially Supervised Instance Segmentation}, 
       author={David Biertimpel and Sindi Shkodrani and Anil S. Baslamisli and Nóra Baka},
       year={2020},
