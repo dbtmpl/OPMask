@@ -3,10 +3,10 @@
  [![Torch 1.7.0](https://img.shields.io/badge/PyTorch-1.7.0-orange)](https://pytorch.org/) [![Detectron2](https://img.shields.io/badge/Detectron2-v0.1-orange)](https://pytorch.org/)
 
 This repository provides the official implementation of the paper:
-> **[Prior to Segment: Foreground Cues for Novel Objects in Partially Supervised Instance Segmentation](#)**<br>
+> **[Prior to Segment: Foreground Cues for Novel Objects in Partially Supervised Instance Segmentation](https://arxiv.org/abs/2011.11787)** <br>
 > *[David Biertimpel](https://scholar.google.com/citations?user=AIu7ihgAAAAJ&hl=en), †[Sindi Shkodrani](https://scholar.google.nl/citations?user=fFVkKNgAAAAJ&hl=en), *[Anil S. Baslamisli](https://scholar.google.nl/citations?user=mc4l2J4AAAAJ&hl=en) and †[Nóra Baka](https://scholar.google.com/citations?user=ahfzQHEAAAAJ&hl=en) <br>
 > *University of Amsterdam, †TomTom<br>
-> pre-print : coming soon <br>
+> pre-print : https://arxiv.org/abs/2011.11787 <br>
 
 ![Image](assets/images/architecture.png?raw=true)
 
@@ -38,7 +38,14 @@ By default each model is evaluated every `TEST.EVAL_PERIOD` iterations and after
 ## <a name="Citing OPMask"></a> Citation
 For citing our paper please use the following BibTeX entry:
 ```
-Coming Soon
+@misc{biertimpel2020prior,
+      title={Prior to Segment: Foreground Cues for Novel Objects in Partially Supervised Instance Segmentation}, 
+      author={David Biertimpel and Sindi Shkodrani and Anil S. Baslamisli and Nóra Baka},
+      year={2020},
+      eprint={2011.11787},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 ```
 
 ## Acknowledgements
