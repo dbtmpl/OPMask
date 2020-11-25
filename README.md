@@ -1,5 +1,5 @@
 # OPMask
-[![Python 3.8](https://img.shields.io/badge/Python-3.8-3776AB.svg?logo=python)](https://www.python.org/) [![NumPy 1.18.5](https://img.shields.io/badge/NumPy-1.18.5-blue)](https://numpy.org/doc/1.18/)
+[![Python 3.8](https://img.shields.io/badge/Python-3.8-3776AB.svg?logo=python)](https://www.python.org/) [![NumPy 1.18.5](https://img.shields.io/badge/NumPy-1.19.4-blue)](https://numpy.org/doc/1.18/)
  [![Torch 1.7.0](https://img.shields.io/badge/PyTorch-1.7.0-orange)](https://pytorch.org/) [![Detectron2](https://img.shields.io/badge/Detectron2-v0.1-orange)](https://pytorch.org/)
 
 This repository provides the official implementation of the paper:
