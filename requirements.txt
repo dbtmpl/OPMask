@@ -1,5 +1,5 @@
 torch==1.7.0
-opencv-python==4.4.0.46
 torchvision==0.8.1
+opencv-python==4.4.0.46
 pycocotools==2.0.2
 detectron2 @ git+https://github.com/facebookresearch/detectron2.git@e49c555a046a7495db58d327f34058e7dc858275
