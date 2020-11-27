@@ -14,10 +14,14 @@ This repository provides the official implementation of the paper:
 Instance segmentation methods require large datasets with expensive instance-level mask labels. This makes partially supervised learning appealing in settings where abundant box and limited mask labels are available. To improve mask predictions with limited labels, we modify a Mask R-CNN by introducing an object mask prior (OMP) for the mask head. We show that a conventional class-agnostic mask head has difficulties learning foreground for classes with box-supervision only. Our OMP resolves this by providing the mask head with the general concept of foreground implicitly learned by the box classification head under the supervision of all classes. This helps the class-agnostic mask head to focus on the primary object in a region of interest (RoI) and improves generalization to novel classes. We test our approach on the COCO dataset using different splits of strongly and weakly supervised classes. Our approach significantly improves over the Mask R-CNN baseline and obtains competitive performance with the state-of-the-art, while offering a much simpler architecture. 
 
 ## Setup
-OPMask relies on [PyTorch](https://pytorch.org/) and [Detectron2](https://github.com/facebookresearch/detectron2). Detectron2 requires [OpenCV](https://opencv.org/) that may need to be installed manually. 
+OPMask relies on [PyTorch](https://pytorch.org/) and [Detectron2](https://github.com/facebookresearch/detectron2). 
 Currently, our implementation only supports the Detectron2 version with which we conducted our research. We intend to support the latest version as soon as possible. 
 For training on [COCO](https://cocodataset.org/) installing `pycocotools` is required.
-After setting up an environment in your preferred way and installing PyTorch, the correct version of Detectron2 can be installed as follows:
+After setting up a `Python 3.8` environment in your preferred way, all dependencies can be installed using the `requirements.txt`:
+```
+pip install -r requirements.txt
+```
+The correct version of Detectron2 can also be installed manually as follows:
 ```
 python -m pip install 'git+https://github.com/facebookresearch/detectron2.git@e49c555a046a7495db58d327f34058e7dc858275'
 ```
@@ -25,15 +29,15 @@ python -m pip install 'git+https://github.com/facebookresearch/detectron2.git@e4
 ## Training
 Training OPMask is simple. In `configs/` we provide different configuration files for reproducing the models in the paper. To test if your installation is correct, you can start a test training on CPU:
 ```Train model
-python start.py --config-file=configs/opmask_R50_FPN_130k.yaml --exp-id=test_run MODEL.DEVICE 'cpu'
+python start.py --config-file=configs/opmask_R50_FPN_130k.yaml --exp-id=test_run MODEL.DEVICE 'cpu' SOLVER.IMS_PER_BATCH 1
 ```
-Configs in `configs/` or default Detectron2 configs can be overwritten by appending `key value` config pairs to the command (e.g. `MODEL.DEVICE 'cpu'` or `TEST.EVAL_PERIOD 5000`).
-For each run a folder `output/OPMask/{dataset}_{exp-id}` is created. With the flag `--exp-id` the folder name can be personalized. The datasets must be configured with the instructions in `datasets/`. 
+Configs can be overwritten by appending `key value` pairs to the command (e.g. `MODEL.DEVICE 'cpu'` or `TEST.EVAL_PERIOD 5000`).
+For each run a folder `output/OPMask/{dataset}_{exp-id}` is created. With the `--exp-id` flag the folder name can be personalized. The datasets must be configured with the instructions in `datasets/`. 
 
 ![Image](assets/images/qualitative_overlay_voc.png?raw=true)
 
 ## Evaluation
-By default each model is evaluated every `TEST.EVAL_PERIOD` iterations and after training. To evaluate a trained model the flag `--eval-only` can be used. Note: the configs (e.g. `exp-id`) need to point to the folder of the trained model.
+By default each model is evaluated every `TEST.EVAL_PERIOD` iterations and after training. To evaluate a trained model the `--eval-only` flag can be used. Note: the configs (e.g. `exp-id`) need to point to the folder of the trained model.
 
 ## <a name="Citing OPMask"></a> Citation
 For citing our paper please use the following BibTeX entry:
@@ -49,4 +53,4 @@ For citing our paper please use the following BibTeX entry:
 ```
 
 ## Acknowledgements
-Special thanks to the AddamsFamily and the TomTom MAPS-Autonomous Driving Team. Thanks to TomTom for providing exhaustive computational resources.
+Special thanks to the ADdamsFamily and the TomTom MAPS-Autonomous Driving Team. Thanks to TomTom for providing exhaustive computational resources.
