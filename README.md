@@ -3,7 +3,7 @@
  [![Torch 1.7.0](https://img.shields.io/badge/PyTorch-1.7.0-orange)](https://pytorch.org/) [![Detectron2](https://img.shields.io/badge/Detectron2-v0.1-orange)](https://pytorch.org/)
 
 This repository provides the official implementation of the paper:
-> **[Prior to Segment: Foreground Cues for Novel Objects in Partially Supervised Instance Segmentation](https://arxiv.org/abs/2011.11787)** <br>
+> **[Prior to Segment: Foreground Cues for Weakly Annotated Classes in Partially Supervised Instance Segmentation](https://arxiv.org/abs/2011.11787)** <br>
 > *[David Biertimpel](https://scholar.google.com/citations?user=AIu7ihgAAAAJ&hl=en), †[Sindi Shkodrani](https://scholar.google.nl/citations?user=fFVkKNgAAAAJ&hl=en), *[Anil S. Baslamisli](https://scholar.google.nl/citations?user=mc4l2J4AAAAJ&hl=en) and †[Nóra Baka](https://scholar.google.com/citations?user=ahfzQHEAAAAJ&hl=en) <br>
 > *University of Amsterdam, †TomTom<br>
 > pre-print : https://arxiv.org/abs/2011.11787 <br>
@@ -11,7 +11,7 @@ This repository provides the official implementation of the paper:
 ![Image](assets/images/architecture.png?raw=true)
 
 ## Abstract
-Instance segmentation methods require large datasets with expensive instance-level mask labels. This makes partially supervised learning appealing in settings where abundant box and limited mask labels are available. To improve mask predictions with limited labels, we modify a Mask R-CNN by introducing an object mask prior (OMP) for the mask head. We show that a conventional class-agnostic mask head has difficulties learning foreground for classes with box-supervision only. Our OMP resolves this by providing the mask head with the general concept of foreground implicitly learned by the box classification head under the supervision of all classes. This helps the class-agnostic mask head to focus on the primary object in a region of interest (RoI) and improves generalization to novel classes. We test our approach on the COCO dataset using different splits of strongly and weakly supervised classes. Our approach significantly improves over the Mask R-CNN baseline and obtains competitive performance with the state-of-the-art, while offering a much simpler architecture. 
+Instance segmentation methods require large datasets with expensive and thus limited instance-level mask labels. Partially supervised instance segmentation aims to improve mask prediction with limited mask labels by utilizing the more abundant weak box labels. In this work, we show that a class agnostic mask head, commonly used in partially supervised instance segmentation, has difficulties learning a general concept of foreground for the weakly annotated classes using box supervision only. To resolve this problem we introduce an object mask prior (OMP) that provides the mask head with the general concept of foreground implicitly learned by the box classification head under the supervision of all classes. This helps the class agnostic mask head to focus on the primary object in a region of interest (RoI) and improves generalization to the weakly annotated classes. We test our approach on the COCO dataset using different splits of strongly and weakly supervised classes. Our approach significantly improves over the Mask R-CNN baseline and obtains competitive performance with the state-of-the-art, while offering a much simpler architecture.
 
 ## Setup
 OPMask relies on [PyTorch](https://pytorch.org/) and [Detectron2](https://github.com/facebookresearch/detectron2). 
