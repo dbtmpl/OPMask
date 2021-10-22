@@ -3,7 +3,7 @@
  [![Torch 1.7.0](https://img.shields.io/badge/PyTorch-1.7.0-orange)](https://pytorch.org/) [![Detectron2](https://img.shields.io/badge/Detectron2-v0.1-orange)](https://pytorch.org/)
 
 This repository provides the official implementation of the paper:
-> **[Prior to Segment: Foreground Cues for Weakly Annotated Classes in Partially Supervised Instance Segmentation](https://arxiv.org/abs/2011.11787)** <br>
+> **[Prior to Segment: Foreground Cues for Weakly Annotated Classes in Partially Supervised Instance Segmentation](https://openaccess.thecvf.com/content/ICCV2021/html/Biertimpel_Prior_to_Segment_Foreground_Cues_for_Weakly_Annotated_Classes_in_ICCV_2021_paper.html) (CVPR 2020)** <br>
 > *†[David Biertimpel](https://scholar.google.com/citations?user=AIu7ihgAAAAJ&hl=en), †[Sindi Shkodrani](https://scholar.google.nl/citations?user=fFVkKNgAAAAJ&hl=en), *[Anil S. Baslamisli](https://scholar.google.nl/citations?user=mc4l2J4AAAAJ&hl=en) and †[Nóra Baka](https://scholar.google.com/citations?user=ahfzQHEAAAAJ&hl=en) <br>
 > *University of Amsterdam, †TomTom<br>
 > pre-print : https://arxiv.org/abs/2011.11787 <br>
